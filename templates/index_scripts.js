@@ -49,3 +49,24 @@ function toggleLumos() {
         bg.play().catch(() => {});
     }
 }
+
+function showSection(sectionId) {
+    // Находим все секции
+    const sections = document.querySelectorAll('.faculty-section');
+    
+    // Скрываем все секции
+    sections.forEach(sec => {
+        sec.classList.remove('active');
+    });
+    
+    // Показываем нужную
+    const activeSection = document.getElementById('section-' + sectionId);
+    if (activeSection) {
+        activeSection.classList.add('active');
+    }
+    
+    // Если это газета, перезапустим эффект печатной машинки (по желанию)
+    if (sectionId === 'prophet') {
+        typeWriter("main-headline", "МАЛЬЧИК, КОТОРЫЙ ЛЖЕТ?", 70);
+    }
+}
