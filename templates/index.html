@@ -3,112 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="templates/index_styles.css">
-    <title>Hogwarts: The Gathering Storm</title>
-
+    <title>Hogwarts: The Daily Prophet</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index_styles.css">
 </head>
 <body>
-
-    <audio id="sfx-ignite" src="sounds/candle.mp3" preload="auto"></audio>
+    <audio id="sfx-ignite" src="https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3" preload="auto"></audio>
     <audio id="ambience-bg" src="https://assets.mixkit.co/active_storage/sfx/1103/1103-preview.mp3" loop preload="auto"></audio>
 
     <div class="overlay-dark"></div>
 
     <div id="start-screen" class="screen">
-        <h1 style="font-size: 2.5rem;">Хогвартс зовет</h1>
-        <p style="font-size: 1.2rem; font-style: italic;">Времена нынче темные...</p>
+        <div class="seal"></div>
+        <h1 class="magic-text">Хогвартс зовет</h1>
+        <p class="italic-text">Времена нынче темные...</p>
         <h2>Вы проходили распределение?</h2>
-        <div>
+        <div class="btn-group">
             <button class="btn" onclick="showFacultySelect()">Да, конечно</button>
             <button class="btn" onclick="alert('Маглы не допускаются!')">Эм... Нет</button>
         </div>
     </div>
 
     <div id="faculty-screen" class="screen hidden">
-        <h2>Где ваше место?</h2>
+        <h2 class="magic-text">Выберите свой факультет</h2>
         <div class="faculty-grid">
-            <div class="faculty-icon" onclick="selectFaculty('gryffindor')">🦁</div>
-            <div class="faculty-icon" onclick="selectFaculty('slytherin')">🐍</div>
-            <div class="faculty-icon" onclick="selectFaculty('ravenclaw')">🦅</div>
-            <div class="faculty-icon" onclick="selectFaculty('hufflepuff')">🦡</div>
+            <div class="faculty-card gryff" onclick="selectFaculty('gryffindor')"><span>🦁</span><p>Гриффиндор</p></div>
+            <div class="faculty-card slyth" onclick="selectFaculty('slytherin')"><span>🐍</span><p>Слизерин</p></div>
+            <div class="faculty-card raven" onclick="selectFaculty('ravenclaw')"><span>🦅</span><p>Когтевран</p></div>
+            <div class="faculty-card huffl" onclick="selectFaculty('hufflepuff')"><span>🦡</span><p>Пуффендуй</p></div>
         </div>
     </div>
 
-    <div id="main-site">
-        <div class="header">
-            <h1 id="faculty-title">Ежедневный Пророк</h1>
-            <p>Специальный выпуск. Одобрено Верховным Инквизитором.</p>
-        </div>
-
-        <div class="news-grid">
-            <div class="article">
-                <h2 class="news-headline">Мальчик, Который Лжет?</h2>
-                <p>Рита Скитер раскрывает шокирующие подробности о психическом состоянии Гарри Поттера. Источники в Министерстве подтверждают: "Он ищет внимания". Дамблдор продолжает игнорировать очевидные факты, подвергая школу опасности.</p>
-                <hr style="border-color: rgba(255,255,255,0.1); margin: 20px 0;">
-                <h2 class="news-headline">Декрет №28</h2>
-                <p>Долорес Амбридж вводит полный запрет на хранение и чтение журнала "Придира". Любой студент, найденный с экземпляром, будет исключен.</p>
+    <main id="main-site" class="prophet-container hidden-site">
+        <header class="prophet-header">
+            <div class="prophet-top-bar">
+                <span>№ 18342</span>
+                <span>ЛОНДОН, 1995</span>
+                <span>5 КНАТОВ</span>
             </div>
-            <div class="article">
-                <h3>ВАЖНОЕ ОПОВЕЩЕНИЕ</h3>
-                <p style="color: #d32f2f; font-weight: bold;">Остерегайтесь Сириуса Блэка!</p>
-                <p>Он может скрываться в облике анимага. Сообщайте о любых подозрительных животных.</p>
-                <br>
-                <h3>Баллы Факультетов</h3>
-                <p>Слизерин лидирует благодаря "примерному поведению" и помощи Инспекционной дружине.</p>
-            </div>
-        </div>
-    </div>
+            <h1 id="faculty-title" class="main-title">Ежедневный Пророк</h1>
+            <div class="prophet-subline">«Правда, и ничего кроме правды... пока не сказано иное»</div>
+        </header>
 
-    <div id="lumos-container">
-        <div class="candle" onclick="toggleLumos()">
+        <div class="prophet-content">
+            <article class="news-main">
+                <h2 id="main-headline"></h2>
+                <div class="magical-photo-frame">
+                    <div class="living-photo" id="main-photo"></div>
+                    <p class="photo-caption">Министерство гарантирует вашу безопасность</p>
+                </div>
+                <div class="article-body">
+                    <p><span class="drop-cap">В</span>черашний инцидент в Министерстве магии, официально названный «плодом воображения», продолжает вызывать споры.</p>
+                </div>
+            </article>
+
+            <aside class="news-sidebar">
+                <div class="wanted-poster">
+                    <div class="wanted-header">РАЗЫСКИВАЕТСЯ</div>
+                    <div class="living-photo sirius-photo"></div>
+                    <div class="wanted-name">СИРИУС БЛЭК</div>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <div id="lumos-container" onclick="toggleLumos()">
+        <div class="candle">
             <div class="wick"></div>
             <div class="flame"></div>
         </div>
-        <div id="lumos-text">LUMOS <br><span style="font-size: 0.7rem; opacity: 0.7;">by L. Malfoy</span></div>
+        <div id="lumos-text">LUMOS</div>
     </div>
 
-    <div id="main-site" class="prophet-container">
-    <header class="prophet-header">
-        <div class="prophet-top-bar">
-            <span>№ 18342</span>
-            <span>ЛОНДОН, 1995</span>
-            <span>ЦЕНА: 5 КНАТОВ</span>
-        </div>
-        <h1 id="faculty-title" class="main-title">Ежедневный Пророк</h1>
-        <div class="prophet-subline">«Правда, и ничего кроме правды... пока не сказано иное»</div>
-    </header>
-
-    <div class="prophet-content">
-        <article class="news-main">
-            <h2 id="main-headline" class="headline-typewriter"></h2> <div class="magical-photo-frame">
-                <div class="living-photo" id="main-photo"></div>
-                <p class="photo-caption">Министерство гарантирует вашу безопасность</p>
-            </div>
-
-            <div class="article-body">
-                <p><span class="drop-cap">В</span>черашний инцидент в Министерстве магии, официально названный «плодом воображения группы подростков», продолжает вызывать споры. Корнелиус Фадж подтвердил, что порядок полностью восстановлен.</p>
-                <p>«Мы не позволим паникерам разрушить то, что строилось десятилетиями», — заявил министр. В это же время Альбус Дамблдор хранит молчание.</p>
-            </div>
-        </article>
-
-        <aside class="news-sidebar">
-            <div class="decree-box">
-                <h3>ДЕКРЕТ №24</h3>
-                <p>«Любое студенческое объединение должно быть одобрено Верховным Инквизитором». — Д.Д. Амбридж</p>
-            </div>
-
-            <div class="wanted-poster">
-                <div class="wanted-header">РАЗЫСКИВАЕТСЯ</div>
-                <div class="living-photo sirius-photo"></div>
-                <div class="wanted-name">СИРИУС БЛЭК</div>
-                <p>Крайне опасен! За любую информацию — вознаграждение в 10,000 галлеонов.</p>
-            </div>
-        </aside>
-    </div>
-</div>
-
-    <script src="templates/index_script.js"></script>
-
+    <script src="index_scripts.js"></script>
 </body>
 </html>
